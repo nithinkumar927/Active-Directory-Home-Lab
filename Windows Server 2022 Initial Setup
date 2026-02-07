@@ -1,0 +1,68 @@
+ Windows Server 2022 Initial Setup  
+Active Directory Home Lab
+
+---
+
+ Objective
+Prepare a Windows Server 2022 machine for Active Directory by completing all required pre-installation steps such as VM creation, server verification, and static IP configuration.
+
+---
+
+Lab Environment
+- Hypervisor: VMware Workstation
+- Server OS: Windows Server 2022 Standard (Evaluation)
+- Network Type: NAT
+- Server Name: DC02
+- Host RAM: 8 GB
+
+---
+
+ Virtual Machine Created
+A new Windows Server 2022 virtual machine was created in VMware with appropriate CPU, RAM, and disk allocation.
+
+ **Proof:**
+![VM Created](screenshots/day-1/01_vm_created_dc02.png)
+
+---
+
+ Windows Server Login Successful
+The server booted successfully and logged in using the local Administrator account.
+
+**Proof:**
+![Windows Server Desktop](screenshots/day-1/02_windows_server_logged_in.png)
+
+---
+
+ Server Manager Dashboard Verified
+Server Manager was opened to confirm the server is ready for role installation.  
+The **Add Roles and Features** option is visible, confirming readiness for Active Directory setup.
+
+ **Proof:**
+![Server Manager Dashboard](screenshots/day-1/03_server_manager_dashboard.png)
+
+---
+
+ Static IP Address Configuration
+The network adapter was configured with a static IPv4 address to meet Active Directory best practices.
+
+Configuration Details:
+- IP Address: Static
+- Subnet Mask: Configured
+- Default Gateway: Configured
+- Preferred DNS: Server’s own IP address
+
+**Proof:**
+![Static IP Configuration](screenshots/day-1/04_static_ip_configuration.png)
+
+
+---
+
+ Network Configuration Verification
+The configuration was verified using the `ipconfig /all` command to ensure:
+- DHCP is disabled
+- Static IPv4 address is applied
+- DNS points to the server itself
+
+Command used:
+```cmd
+ipconfig /all
