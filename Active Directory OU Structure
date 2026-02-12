@@ -1,0 +1,58 @@
+Active Directory OU Structure 
+
+This project shows my current Organizational Unit (OU) structure inside Active Directory as part of my Windows Server lab practice.
+
+Overview
+
+I created a structured OU hierarchy to organize users, computers, and servers properly. This helps with:
+
+Applying Group Policies
+
+Managing users by department
+
+Separating workstations from servers
+
+Keeping the domain clean and organized
+
+Domain Name
+
+NK.local
+
+OU Structure
+Asia
+
+This is my regional OU.
+
+Inside Asia, I created:
+
+Computers
+
+Laptops
+
+Workstations
+
+Groups
+
+ServiceAccounts
+
+Servers
+
+DomainControllers
+
+Users
+
+Finance
+
+HR
+
+IT
+
+Each department has its own OU to make management easier and more realistic.
+
+Screenshot
+
+Below is the current structure from Active Directory Users and Computers:
+
+******The Screenshot will be in OU Structure File******
+
+
