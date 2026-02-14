@@ -1,0 +1,132 @@
+Introduction
+
+In this lab, I set up a Windows 10 client machine and connected it to my NK.local Active Directory domain.
+
+The goal of this project was to understand how client machines are configured in a domain environment and how they communicate with the Domain Controller and File Server.
+
+This simulates how a company prepares a new employee computer before handing it over.
+
+Lab Environment
+
+Domain: NK.local
+
+Domain Controller: Windows Server
+
+Client Machine: Windows 10
+
+Services Used:
+
+Active Directory
+
+DNS
+
+Group Policy
+
+File Server
+
+What I Configured
+1. Network Configuration
+
+Before joining the domain, I configured the client’s network settings:
+
+Assigned IP address (or used DHCP from server)
+
+Set DNS server to the Domain Controller IP
+
+Verified connectivity using:
+
+ping server-ip
+
+
+This step ensured the client could properly locate the domain.
+
+2. Joined the Domain
+
+I joined the client machine to:
+
+NK.local
+
+
+Steps performed:
+
+Opened System Properties
+
+Selected “Change settings”
+
+Entered domain name
+
+Provided domain administrator credentials
+
+Restarted the machine
+
+After reboot, I confirmed successful domain membership.
+
+3. Verified Domain Login
+
+On the login screen:
+
+Selected “Other user”
+
+Logged in using domain credentials:
+
+NK\username
+
+
+or
+
+username@NK.local
+
+
+This confirmed authentication through Active Directory.
+
+4. Applied Group Policy
+
+After login, I forced policy updates:
+
+gpupdate /force
+
+
+Then verified applied policies using:
+
+gpresult /r
+
+
+This confirmed the client was receiving domain policies correctly.
+
+5. Verified Drive Mapping
+
+Once logged in:
+
+Confirmed mapped network drive appeared automatically
+
+Verified access to shared folder
+
+Tested file creation (based on permissions)
+
+This ensured proper communication between:
+
+Client → Domain Controller → File Server
+
+What I Learned
+
+Through this project, I learned:
+
+The importance of DNS in domain environments
+
+How domain authentication works
+
+How Group Policy is applied to client machines
+
+How to troubleshoot domain join issues
+
+How enterprise environments manage user computers
+
+Troubleshooting I Practiced
+
+Incorrect DNS configuration
+
+Domain join failure
+
+Credential authentication issues
+
+Group Policy not applying
