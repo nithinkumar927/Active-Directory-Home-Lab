@@ -1,0 +1,142 @@
+In this homelab, I set up and configured File Services in a Windows Server environment joined to my NK.local Active Directory domain.
+
+The purpose of this project was to understand how file sharing works in a domain environment, how permissions are controlled, and how storage can be managed using File Server Resource Manager (FSRM).
+
+This lab simulates a real-world company file server setup.
+
+Lab Environment
+
+Domain: NK.local
+
+Server: Windows Server (File Server role installed)
+
+Client: Windows 10 (domain joined)
+
+Tools Used:
+
+File and Storage Services
+
+Group Policy
+
+File Server Resource Manager (FSRM)
+
+What I Configured
+1. Created a Shared Folder
+
+I created a folder:
+
+C:\SHARED
+
+
+Then I enabled sharing and configured:
+
+Share permission: Everyone – Read
+
+NTFS permissions:
+
+CREATOR OWNER
+
+SYSTEM
+
+Administrators
+
+Domain Users
+
+This allowed controlled access while maintaining security.
+
+📷 Screenshot:
+screenshots/01-share-permissions.png
+screenshots/02-ntfs-permissions.png
+
+2. Mapped Network Drive
+
+On the client machine, I mapped the shared folder as drive:
+
+Z:
+
+
+Then I configured a Group Policy to automatically map this drive for domain users.
+
+Drive settings:
+
+Location: \ServerName\SHARED
+
+Label: Public Files
+
+Reconnect enabled
+
+📷 Screenshot:
+screenshots/03-map-network-drive-client.png
+screenshots/04-gpo-drive-map-settings.png
+
+3. Installed and Configured FSRM
+
+To manage storage properly, I installed File Server Resource Manager.
+
+From there, I configured:
+
+Quota Management
+
+File Screening
+
+📷 Screenshot:
+screenshots/05-fsrm-dashboard.png
+
+4. Created a Quota
+
+I applied a quota to:
+
+C:\SHARED
+
+
+Using the template:
+
+10 GB Limit (Hard)
+
+
+This ensures users cannot exceed allocated storage.
+
+📷 Screenshot:
+screenshots/06-create-quota.png
+
+5. Created a File Screen
+
+To prevent misuse of storage, I created a file screen to block:
+
+Audio and Video files
+
+
+This prevents users from storing large media files on the company file share.
+
+📷 Screenshot:
+screenshots/07-create-file-screen.png
+
+What I Learned
+
+Through this project, I learned:
+
+The difference between Share permissions and NTFS permissions
+
+How Group Policy can automate drive mapping
+
+How quotas protect server storage
+
+How file screening prevents unwanted file types
+
+How enterprise file servers are structured
+
+Project Outcome
+
+After completing this lab:
+
+Users can access the shared folder securely
+
+The network drive maps automatically
+
+Storage is limited to 10 GB
+
+Media files are blocked
+
+Everything is managed centrally through the domain
+
+This project helped me better understand real-world Windows Server file management and Active Directory integration.
