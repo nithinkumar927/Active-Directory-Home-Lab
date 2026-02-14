@@ -1,0 +1,112 @@
+Introduction
+
+In this lab, I tested two important user policies in my Active Directory environment:
+
+Blocking access to the Control Panel
+
+Forcing a desktop wallpaper using Group Policy
+
+The goal was to understand how user-based policies work on a domain-joined Windows 10 client and how they affect users after login.
+
+This testing was done inside my NK.local homelab environment.
+
+Lab Setup
+
+Domain: NK.local
+
+Domain Controller: Windows Server
+
+Client Machine: Windows 10 (joined to domain)
+
+Tool used: Group Policy Management
+
+The client machine was already connected to the domain before testing these policies.
+
+🔒 Control Panel Restriction Test
+What I Wanted to Do
+
+I wanted to prevent domain users from accessing:
+
+Control Panel
+
+Windows Settings
+
+This simulates a company setup where users are not allowed to change system settings.
+
+How I Configured It
+
+Inside Group Policy, I went to:
+
+User Configuration → Administrative Templates → Control Panel
+
+Then I enabled:
+
+“Prohibit access to Control Panel and PC settings”
+
+After enabling the policy, I made sure it was linked to the correct OU.
+
+Testing on the Client
+
+On the Windows 10 client machine:
+
+I logged in as a domain user
+
+Ran:
+
+gpupdate /force
+
+
+Tried opening Control Panel
+
+Tried opening Settings
+
+The system displayed a restriction message, and access was blocked successfully.
+
+This confirmed the policy was working.
+
+🖼️ Desktop Wallpaper Policy Test
+What I Wanted to Do
+
+I wanted to enforce a company-style wallpaper and prevent users from changing it.
+
+How I Configured It
+
+Inside Group Policy:
+
+User Configuration → Administrative Templates → Desktop → Desktop
+
+I enabled:
+
+Desktop Wallpaper
+
+Then I added the wallpaper path and selected the style (Fill).
+
+After saving the policy, I ensured it was linked properly.
+
+Testing on the Client
+
+On the client machine:
+
+I ran:
+
+gpupdate /force
+
+
+Logged out and logged back in
+
+Checked if the wallpaper changed
+
+Tried to manually change the background
+
+The wallpaper was applied automatically, and I could not change it. The option was restricted.
+
+This confirmed the policy was enforced correctly.
+
+How I Verified the Policies
+
+To confirm the policies were actually applied, I ran:
+
+gpresult /r
+
+
+This showed that the correct GPO was applied to the user.
