@@ -6,7 +6,7 @@ This lab simulates a real-world company file server setup.
 
 Lab Environment
 
-Domain: NK.local
+Domain: NK.local 
 
 Server: Windows Server (File Server role installed)
 
