@@ -84,7 +84,7 @@ Screenshots included in this project:
 
 ---
 
-Future Enhancements
+
 - Add File Server with NTFS permissions
 - Implement password and account lockout policies
 - Add a second Domain Controller
