@@ -1,0 +1,129 @@
+Active Directory Group Policy Lab – NK.local
+
+This lab is part of my Active Directory practice environment where I focused on learning and testing Group Policy configuration in a domain setup.
+
+The goal was simple: understand how GPOs actually work in a real Windows Server environment and see how they affect users and computers inside different OUs.
+
+My domain name: NK.local
+
+What I Worked On
+
+In this lab, I configured multiple Group Policies to control security, user settings, and system restrictions across the domain.
+
+I tested everything using:
+
+Windows Server (Domain Controller)
+
+Windows 10 client machine (domain joined)
+
+Group Policy Management Console (GPMC)
+
+Password Policy
+
+I configured a custom password policy inside the domain.
+
+Location:
+Computer Configuration → Policies → Windows Settings → Security Settings → Account Policies → Password Policy
+
+Settings I applied:
+
+Password history: 24 passwords remembered
+
+Maximum password age: 90 days
+
+Minimum password age: 1 day
+
+Minimum password length: 14 characters
+
+Reversible encryption: Disabled
+
+This helped me understand how domain-level password enforcement works and how it affects all users.
+
+Account Lockout Policy
+
+I configured account lockout to improve security.
+
+Location:
+Computer Configuration → Policies → Windows Settings → Security Settings → Account Policies → Account Lockout Policy
+
+Setting:
+
+Account lockout threshold: 5 invalid attempts
+
+If a user enters the wrong password five times, their account gets locked. This protects against brute-force login attempts.
+
+Network Drive Mapping (Z: Drive)
+
+I created a mapped drive policy so users automatically receive a shared folder when they log in.
+
+Location:
+User Configuration → Preferences → Windows Settings → Drive Maps
+
+Configuration:
+
+Action: Update
+
+Path: \DC02\Shared Folder
+
+Drive letter: Z:
+
+Label: Public Files
+
+Reconnect: Enabled
+
+When users log in, the shared folder appears automatically as drive Z:.
+
+This was my first time using Group Policy Preferences instead of Administrative Templates.
+
+Desktop Wallpaper Policy
+
+I tested forcing a desktop wallpaper across users.
+
+Location:
+User Configuration → Policies → Administrative Templates → Desktop → Desktop
+
+Setting:
+
+Desktop Wallpaper: Enabled
+
+Style: Fill
+
+Once applied, users cannot change their background. This simulates a company-branded desktop environment.
+
+Blocking Control Panel
+
+To restrict user access, I enabled:
+
+User Configuration → Administrative Templates → Control Panel
+Policy: Prohibit access to Control Panel and PC settings
+
+After applying this, users could not open Control Panel or Settings. This is useful in managed environments like schools or companies.
+
+USB / Removable Storage Restriction
+
+I also tested blocking USB storage devices.
+
+Location:
+Computer Configuration → Administrative Templates → System → Removable Storage Access
+
+Setting:
+
+All removable storage classes: Deny all access
+
+This prevents users from plugging in USB drives, which improves data security.
+
+What I Learned
+
+GPOs can control almost everything in a Windows domain.
+
+Policies must be linked correctly to the right OU.
+
+User Configuration affects users.
+
+Computer Configuration affects machines.
+
+Running gpupdate /force helps apply changes immediately.
+
+gpresult /r helps troubleshoot when policies don’t apply.
+
+At first, some policies didn’t apply because I linked them to the wrong OU. Fixing that helped me understand how inheritance works.
